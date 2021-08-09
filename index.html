@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <style>
+            *{
+                padding: 0;
+                margin: 0;
+                background-color: rgb(6, 178, 247);
+            }
+            .maindiv{
+                
+                text-align: center;
+                font-size: 30px;
+               
+             }
+             button{
+               background-color: rgb(87, 177, 75); 
+               color: black;
+               font-size: 50px;    
+            }
+            #result{
+                color: red;
+                font-size: 100px;
+
+            }
+       
+        </style>
+    </head>
+    <body>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <div class="maindiv">
+         <p id="tosstext">Click Here To Show The Toss Result</p>
+         <br><br>
+         <p id="result"></p>
+         <br>
+         <button id="buttonid">Click Here</button>
+        </div>
+
+         <script>
+             const resultText = document.querySelector('#result');
+             const button_id = document.querySelector('#buttonid');
+             let timeref;
+             let num = 1;
+
+             const tossResult =() =>{
+                
+                 
+                 setTimeout(() => {
+                    
+                     const random_number = Math.floor(Math.random() * 11);
+                    
+                     if(random_number % 2 == 0){
+                        resultText.innerHTML = "Head";
+                     }
+                     else{
+                        
+                        resultText.innerHTML = "Tail";
+                     }
+                  
+                     
+                 }, 1000  )
+
+             }
+
+
+             const tosswait =() =>{
+                resultText.innerHTML = "Loading..........";
+               
+                timeref = setInterval(() =>{//***************
+                    resultText.innerHTML = `${num}`
+                    if(num > 2)
+                    {
+                        num = 0;
+                        tossResult();
+                        clearInterval(timeref); // process stop kore dei brack; er moto ***********
+                    }
+                    num++;
+                }, 500);
+        
+
+             }
+
+             button_id.addEventListener('click',tosswait );
+
+         </script>
+        </body>
+</html>
